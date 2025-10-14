@@ -1,0 +1,21 @@
+---
+
+- name: Change basic configuration of servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Change hostname of servers
+      hostname:
+        name: "ubuntu-srv"    # Replace with actual hostname (e.g. web01)
+
+    - name: Change timezone of servers
+      timezone:
+        name: "Asia/Tehran"      # Replace with your timezone
+
+    - name: Overwrite /etc/resolv.conf
+      copy:
+        dest: /etc/resolv.conf
+        content: |
+          nameserver 1.1.1.1
+          nameserver 8.8.8.8
+
