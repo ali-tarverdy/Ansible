@@ -1,0 +1,49 @@
+---
+
+- name: Install mariadb in linux
+  become: yes
+  hosts: all
+  tasks:
+
+    - name: Update repository (Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Upgrade packages (Ubuntu)
+      apt:
+        upgrade: yes
+      when: ansible_facts['os_family'] == "Debian"
+  
+    - name: Install mariadb packages (Ubuntu)
+      apt:
+        name:
+          - mariadb-server
+          - mariadb-client
+          - mariadb-server
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: update repository (Redhat)
+      dnf:
+        update_cache: yes
+      when: ansible_facts['os_family'] == "RedHat"
+
+    
+    - name: Upgrade packages (Redhat)
+      dnf:
+        update_only: yes
+      when: ansible_facts['os_family'] == "RedHat"
+    
+    - name: Install mariadb packages (Redhat)
+      dnf:
+        name:
+          - mariadb-server
+          - mariadb-common
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name: Enable and start mariadb service
+      systemd:
+        name: mariadb
+        state: started
+        enabled: yes
+
