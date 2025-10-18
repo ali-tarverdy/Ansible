@@ -18,4 +18,26 @@
         content: |
           nameserver 1.1.1.1
           nameserver 8.8.8.8
-
+    
+    - name: Install some packages (Debian)
+      apt:
+        name:
+          - vim
+          - curl
+          - wget
+          - tcpdump
+          - htop
+          - net-tools
+      when: ansible_facts['os_family'] == "Debian"
+    
+    - name: Install some packages (Redhat)
+      dnf:
+        name:
+          - vim
+          - curl
+          - wget
+          - tcpdump
+          - htop
+          - net-tools
+      when: ansible_facts["os_family"] == "RedHat"
+    
