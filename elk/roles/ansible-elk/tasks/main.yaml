@@ -1,0 +1,73 @@
+- name: Update cache (Debian) 
+  apt:
+    update_cache: yes
+  tags: [update_cache]
+
+- name: Download deb package of elasticsearch (Debian)
+  get_url:
+    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.2.0-amd64.deb
+    dest: /root/elasticsearch-9.2.0-amd64.deb
+    owner: root
+    mode: 0644
+    timeout: 25
+    force: no
+      #validate_certs: no
+  tags: [download_deb_package]
+
+- name: Install deb package of elasticsearch (Debian)
+  shell: dpkg -i /root/elasticsearch-9.2.0-amd64.deb >> /root/elasticsearch_install.log
+  args:
+    creates: /usr/share/elasticsearch
+  tags: [install_deb_package]
+
+- name: Copy elasticsearch.yml file
+  copy:
+    src: /etc/elasticsearch/elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml.backup
+    remote_src: yes
+    owner: root
+    group: elasticsearch
+    mode: 0660
+  tags: [copy_elasticsearch.yml_file]
+
+
+- name: Change cluser name of elastcsearch.yml config file
+  lineinfile:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: "^#cluster.name:"
+    line: "cluster.name: tblco-cluster"
+    state: present
+  tags: [change_cluster_name]
+
+
+- name: change network host of elasticsearch.yml config file
+  lineinfile:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: "^#network.host:"
+    line: "network.host: {{ ansible_default_ipv4.address }}"
+    state: present
+  tags: [change_network_host]
+
+- name: change transport host of elasticsearch.yml config file
+  lineinfile:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: "^#transport.host:"
+    line: "transport.host: 0.0.0.0"
+    state: present
+  tags: [change_transport_host]
+
+- name: change node roles of elasticsearch.yml config file
+  lineinfile:
+    path: /etc/elasticsearch/elasticsearch.yml
+    line: 'node.roles: ["master", "data"]'
+    state: present
+  tags: [change_node_roles]
+
+    #- name: Enable and restart elasticsearch
+    # systemd:
+    #name: elasticsearch
+    #daemon_reload: yes
+      #state: restarted
+      #enabled: yes
+      #tags: [restart_enable_elasticsearch_service]
+
