@@ -1,0 +1,7 @@
+---
+- hosts: ansible-server
+  vars_prompt:
+    - name: project_name
+      prompt: "Enter Your Project Name"
+  roles:
+    - pre-work-ansible

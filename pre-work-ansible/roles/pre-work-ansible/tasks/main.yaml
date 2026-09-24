@@ -1,0 +1,211 @@
+- name: "Make Project Directory In /opt"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Project Directory
+
+- name: "Make ansible.cfg File In /opt/{{ project_name }}" 
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/ansible.cfg"
+    state: touch
+    owner: root
+    group : root
+    mode: "0644"
+  tags:
+    - Make ansible.cfg File 
+
+- name: "Make Inventory Directory In /opt/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/inventory"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Inventory Directory 
+
+- name: "Make Hosts File In /opt/{{ project_name }}/inventory"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/inventory/hosts"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make Hosts File 
+
+- name: "Make Plays Directory In /opt/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/plays"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Plays Directory
+
+- name: "Make {{ project_name }}.yaml File In /opt/{{ project_name }}/plays"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/plays/{{ project_name }}.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make Playbook File
+
+- name: "Make Roles Directory In /opt/{{ project_name }}/"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Roles Directory
+
+- name: "Make Roles Directory Name In /opt/{{ project_name }}/roles/"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Roles Directory
+
+- name: "Make Vars Directory In /opt/{{ project_name }}/roles/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/vars"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Vars Directory
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/vars"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/vars/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Vars
+
+- name: "Make defaults Directory In /opt/{{ project_name }}/roles/{{ project_name }}/"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/defaults"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Defaults Directory
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/defaults"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/defaults/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Vars
+
+- name: "Make Meta Directory In /opt/{{ project_name }}/roles/{{ project_name }}/"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/meta"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Meta Directory
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/meta"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/meta/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Meta
+
+- name: "Make Tasks Directory In /opt/{{ project_name }}/roles/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/tasks"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Tasks Directory
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/tasks"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/tasks/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Tasks
+
+- name: "Make Handlers Directory In /opt/{{ project_name }}/roles/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/handlers"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Handlers Directory
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/handlers"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/handlers/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Handlers
+
+- name: "Make Files Directory In /opt/{{ project_name }}/roles/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/files"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make Files Directory
+
+
+- name: "Make main.yaml File In /opt/{{ project_name }}/roles/{{ project_name }}/Files"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/files/main.yaml"
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - Make main.yaml File In Files
+
+- name: "Make Templates Directory In /opt/{{ project_name }}/roles/{{ project_name }}"
+  ansible.builtin.file:
+    path: "/opt/{{ project_name }}/roles/{{ project_name }}/templates"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - Make templates Directory
+
